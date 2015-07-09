@@ -26,5 +26,11 @@ meta(en.corpus[[1]])
 en.corpus.text <- tm_map(en.corpus, as.PlainTextDocument)
 en.corpus.text <- tm_map(en.corpus.text, stripWhitespace)
 en.corpus.text <- tm_map(en.corpus.text, tolower)
+en.corpus.text <- tm_map(en.corpus.text, removePunctuation)
+en.corpus.text <- tm_map(en.corpus.text, as.PlainTextDocument)
+
 head(en.corpus.text[[1]])
 en.db <- dbInit("enDB")
+
+# prepare a document term matrix
+dtm.en <- DocumentTermMatrix(en.corpus.text)
